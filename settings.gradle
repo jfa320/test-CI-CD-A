@@ -7,4 +7,4 @@
 
 
 rootProject.name = 'test-ci-cd'
-//include('app')
+include('app')
