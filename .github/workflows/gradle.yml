@@ -11,7 +11,7 @@ permissions:
   security-events: write
 defaults:
   run:
-    working-directory: test-CI-CD-A
+    working-directory: App
 jobs:
   build:
 
