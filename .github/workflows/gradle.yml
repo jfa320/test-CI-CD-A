@@ -30,5 +30,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: test-results
-        path: build/reports/tests/test/    
+        path: ${{ github.workspace }}/build/reports/tests/test/    
 
