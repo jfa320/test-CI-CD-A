@@ -1,6 +1,6 @@
 .gradle/
 .settings/
-app/.settings/
-app/bin/
-app/build/
+.settings/
+bin/
+build/
 bin/
