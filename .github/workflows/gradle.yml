@@ -30,19 +30,17 @@ jobs:
       with:
         name: test-results
         path: build/reports/tests/test/   
+
     - name: Create Directories
       run: |
-        mkdir -p ./test-results/main/
-        mkdir -p ./test-results/prueba/ 
+        mkdir -p ./test-results/${{ github.ref }}/ # Crea un directorio basado en el nombre del branch
 
     - name: Download Test Results
       uses: actions/download-artifact@v2
       with:
         name: test-results
-        path: test-results/prueba/
-    
-
-
+        path: test-results/${{ github.ref }}/
+ 
     - name: Publish Test Results as Github Pages (Main)
       if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
