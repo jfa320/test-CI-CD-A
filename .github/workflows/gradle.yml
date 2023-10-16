@@ -37,9 +37,22 @@ jobs:
         name: test-results
         path: test-results
     
-    - name: Publish Test Results as Github Pages
+    - name: Create Directories
+      run: |
+        mkdir -p ./test-results/main/
+        mkdir -p ./test-results/prueba/
+
+    - name: Publish Test Results as Github Pages (Main)
+      if: github.ref == 'refs/heads/main'
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.TOKEN }}
-        publish_dir: ./test-results/
+        publish_dir: ./test-results/main/
+
+    - name: Publish Test Results as Github Pages (Prueba)
+      if: github.ref == 'refs/heads/prueba'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.TOKEN }}
+        publish_dir: ./test-results/prueba/
 
