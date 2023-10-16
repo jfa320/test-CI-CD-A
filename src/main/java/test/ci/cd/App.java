@@ -5,6 +5,7 @@ package test.ci.cd;
 
 public class App {
     public String getGreeting() {
+        //prueba random
         return "Hello World!";
     }
 
