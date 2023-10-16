@@ -31,27 +31,21 @@ jobs:
         name: test-results
         path: build/reports/tests/test/   
 
-    - name: Create Directories
-      run: |
-        mkdir -p ./test-results/${{ github.ref }}/ # Crea un directorio basado en el nombre del branch
-
     - name: Download Test Results
       uses: actions/download-artifact@v2
       with:
         name: test-results
-        path: test-results/${{ github.ref }}/
- 
-    - name: Publish Test Results as Github Pages (Main)
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.TOKEN }}
-        publish_dir: ./test-results/main/
+        path: test-results
+    
+    - name: Move Test Results
+      run: |
+        mkdir -p ./test-results/${{ github.ref }}
+        mv test-results/* ./test-results/${{ github.ref }}/ || true # Mueve los resultados a la carpeta adecuada
 
-    - name: Publish Test Results as Github Pages (Prueba)
-      if: github.ref == 'refs/heads/prueba'
+ 
+    - name: Publish Test Results as Github Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.TOKEN }}
-        publish_dir: ./test-results/prueba/
+        publish_dir: ./test-results/${{ github.ref }}/
 
